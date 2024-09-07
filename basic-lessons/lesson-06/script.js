@@ -18,45 +18,9 @@ const canvas = document.querySelector(".webgl");
 
 // Sizes
 const sizes = {
-	width: window.innerWidth,
-	height: window.innerHeight,
+	width: 800,
+	height: 600,
 };
-
-window.addEventListener("resize", () => {
-	// Update sizes
-	sizes.width = window.innerWidth;
-	sizes.height = window.innerHeight;
-
-	// Update camera
-	camera.aspect = sizes.width / sizes.height;
-	camera.updateProjectionMatrix();
-
-	// Update renderer
-	renderer.setSize(sizes.width, sizes.height);
-	//   resize the pixel ratio to the minimum between the device pixel ratio and 2
-	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-});
-
-// Fullscreen
-
-window.addEventListener("dblclick", () => {
-	const fullscreenElement =
-		document.fullscreenElement || document.webkitFullscreenElement;
-
-	if (!fullscreenElement) {
-		if (canvas.requestFullscreen) {
-			canvas.requestFullscreen();
-		} else if (canvas.webkitRequestFullscreen) {
-			canvas.webkitRequestFullscreen();
-		}
-	} else {
-		if (document.exitFullscreen) {
-			document.exitFullscreen();
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen();
-		}
-	}
-});
 
 // Scene
 const scene = new THREE.Scene();
@@ -85,7 +49,6 @@ const renderer = new THREE.WebGLRenderer({
 	canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Animate
 
